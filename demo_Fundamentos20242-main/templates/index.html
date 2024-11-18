@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Regalos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f1f1f1;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .gift-list {
+            margin-top: 20px;
+        }
+        .gift-name {
+            font-weight: bold;
+        }
+        .recipient {
+            color: #777;
+        }
+        #gift_names {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Lista de Regalos</h1>
+    </header>
+
+    <div class="container">
+        <h2>Añadir un Regalo</h2>
+        <form action="/add_gift" method="POST">
+            <label for="gift_name">Nombre del Regalo:</label>
+            <input type="text" id="gift_name" name="gift_name" required><br>
+
+            <label for="recipient">Destinatario:</label>
+            <input type="text" id="recipient" name="recipient" required><br>
+
+            <button type="submit">Añadir Regalo</button>
+        </form>
+
+        <h2>Eliminar un Regalo</h2>
+        <form action="/delete_gift" method="POST">
+            <label for="gift_name_to_delete">Nombre del Regalo a Eliminar:</label>
+            <input type="text" id="gift_name_to_delete" name="gift_name_to_delete" required><br>
+
+            <button type="submit">Eliminar Regalo</button>
+        </form>
+
+        <div class="gift-list">
+            <h2>Regalos:</h2>
+            <ul>
+                {% for gift in regalos %}
+                    <li>
+                        <span class="gift-name">{{ gift['gift_name'] }}</span> - 
+                        <span class="recipient">Destinatario: {{ gift['recipient'] }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <h2>Obtener Todos los Nombres de Regalos (Método GET)</h2>
+        <button onclick="getGiftNames()">Obtener Nombres de Regalos</button>
+        <ul id="gift_names"></ul>
+    </div>
+
+    <script>
+        function getGiftNames() {
+            fetch('/get_gifts')
+                .then(response => response.json())
+                .then(data => {
+                    const giftNamesList = document.getElementById('gift_names');
+                    giftNamesList.innerHTML = '';
+                    data.forEach(gift => {
+                        const li = document.createElement('li');
+                        li.textContent = gift;
+                        giftNamesList.appendChild(li);
+                    });
+                });
+        }
+    </script>
+</body>
+</html>

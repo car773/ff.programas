@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cines & Series - Disfruta lo mejor del entretenimiento</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Enlace a un archivo CSS externo -->
+</head>
+<body>
+    <!-- Encabezado de la página -->
+    <header>
+        <h1>Cines & Series</h1>
+        <p>Explora los últimos estrenos y las series más populares</p>
+    </header>
+
+    <!-- Sección de cartelera -->
+    <section>
+        <h2>Cartelera de Cine</h2>
+        <p>Aquí puedes ver los últimos estrenos en cines</p>
+        <ul>
+            <li><img src="pelicula1.jpg" alt="Película 1" width="50%"> Película 1</li>
+            <li><img src="pelicula2.jpg" alt="Película 2" width="50%"> Película 2</li>
+            <li><img src="pelicula3.jpg" alt="Película 3" width="50%"> Película 3</li>
+        </ul>
+    </section>
+
+    <!-- Sección de series -->
+    <section>
+        <h2>Series Populares</h2>
+        <p>Descubre las series más vistas del momento</p>
+        <ul>
+            <li><img src="serie1.jpg" alt="Serie 1" width="50%"> Serie 1</li>
+            <li><img src="serie2.jpg" alt="Serie 2" width="50%"> Serie 2</li>
+            <li><img src="serie3.jpg" alt="Serie 3" width="50%"> Serie 3</li>
+        </ul>
+    </section>
+
+    <!-- Sección de formulario para sugerencias -->
+    <section>
+        <h2>Sugiere tu película o serie favorita</h2>
+        <form action="#" method="POST">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="sugerencia">Tu sugerencia:</label>
+            <input type="text" id="sugerencia" name="sugerencia" required>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2024 Cines & Series. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
